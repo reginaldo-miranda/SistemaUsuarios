@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('/',function(){
-    return view('teste');
+    return view('usuario_frm_login');
 });
 
 
