@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
-{{-- formulario de Login --}}
+{{-- formulario de criar conta --}}
+
 @section('conteudo')
 
    <div class="row"> 
