@@ -31,11 +31,13 @@
              </div>
                
              <div class="text-center margin-top-20">
-               <a href="#">Recuperar senha</a>
+               <a href="/usuario_frm_recuperar_senha">Recuperar senha</a>
+
              </div>  
 
              <div class="text-center">
-               <a href="#">Criar nova conta</a>
+               <a href="/usuario_frm_criar_nova_conta">Criar nova conta</a>
+
              </div> 
          
          </form>

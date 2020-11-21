@@ -10,14 +10,12 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+// route defaut
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//use Illuminate\Routing\Route;
 
-Route::get('/',function(){
-    return view('usuario_frm_recuperar_senha');
-});
+Route::get('/','usuariosController@index');
 
+Route::get('/usuario_frm_recuperar_senha','usuariosController@frmRecupararSenha');
 
-
+Route::get('/usuario_frm_criar_nova_conta','usuariosController@frmCriarNovaConta');

@@ -50,7 +50,7 @@
                  {{-- voltar ao inicio --}}
              <div class="text-center margin-top-20">
 
-               <a href="#">Voltar ao inicio</a>
+               <a href="/">Voltar ao inicio</a>
              </div> 
          
          </form>
