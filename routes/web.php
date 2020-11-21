@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('/',function(){
-    return view('usuario_frm_login');
+    return view('usuario_frm_recuperar_senha');
 });
 
 
