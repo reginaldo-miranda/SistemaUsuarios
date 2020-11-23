@@ -8,22 +8,19 @@
     <div class="col-md-4 col-md-4 offset-4 col-sm-8 offset-2 col-xs-12">
       {{-- apresentacao de erros de validacao --}}
 
+       @include('inc.erros')
 
-
-      {{-------------------------------------------------------------}}
-
-
-         <form method="POST" action="">
+         <form method="POST" action="/usuario_executar_login">
 
              {{ csrf_field() }}
              <div class="form-group">
                <label for="id_text_usuario">Usuario</label> 
-               <input type="text" class="form-control" id="id_text_usuario" name="id_text_usuario" placeholder="usuario:">   
+               <input type="text" class="form-control" id="id_text_usuario" name="text_usuario" placeholder="usuario:">   
              </div>
 
               <div class="form-group">
                <label for="id_text_senha">senha</label> 
-               <input type="password" class="form-control" id="id_text_senha" name="id_text_senha" placeholder="senha:">   
+               <input type="password" class="form-control" id="id_text_senha" name="text_senha" placeholder="senha:">   
              </div>
 
              <div class="text-center">
