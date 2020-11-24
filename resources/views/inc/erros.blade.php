@@ -22,3 +22,12 @@
 @endif
 
 {{-- apresentacao de erro com o bd --}}
+@if(isset($erros_db))
+    <div class="alert alert-danger">
+        @foreach($erros_bd as $erro)
+         <p>{{ $erro }}</p>
+            
+        @endforeach
+
+    </div>
+@endif
