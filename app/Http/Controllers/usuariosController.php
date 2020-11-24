@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\usuarios;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Session;
+use App\classes\minhaClasse;
+use App\Mail\emailRecuperarSenha;
 
 class usuariosController extends Controller
 {
@@ -88,7 +91,37 @@ class usuariosController extends Controller
              'text_email' => 'required|email'
 
          ]);
-            return 'ok';
+
+         // vai buscar o usuario da seenha correspondente
+         $usuario = usuarios::where('email',$request->text_email)->get();
+         if($usuario->count()==0){
+            $erros_bd = ['o email nao esta cadastrado'];
+            return view('usuario_frm_recuperar_senha', compact('erros_bd'));
+
+         }
+          //atualizar a senha para nova senha  (recuperar)    
+          $usuario = $usuario->first();
+          // criar uma nova senha aleatoria
+          $nova_senha = minhaClasse::criarCodigo();
+          $usuario->senha = Hash::make($nova_senha);
+          $usuario->save();
+
+          Mail::to($ususrios->email)->send(new emailRecuperarSenha($nova_senha));
+
+         /*
+         1 ter um susuario com email valido
+         2 verificar se o email inserido corresponde a do usuario
+         3 criar senha aleatoria
+         3a registrar alterar a senha na bd
+         4 envia email com a nova senha para o email do usuario
+         5 informar em uma viw o usuario q foi enviado a senha
+
+         //$2y$10$Lr2gA9enmqjJJd6XN0799.EhCZmJRh.ptqsredXqyb3Rl1d3VmJ8m
+         //$2y$10$ZTgR9k/Cfj51vBUQWFmxFOYsvotHcPLGu0iqvfJFpOUKU6RNSNPRe
+         // HyYjgGqYZ6
+
+         */ $nova_senha = minhaClasse::criarCodigo();
+            return $nova_senha;
      }
 
      //--------------------------criar conta -------------------------------

@@ -38,4 +38,4 @@ Route::post('/usuario_executar_criar_conta','usuariosController@executarCriarNov
 // routes interior do sistema
 Route::get('aplicacao_index','aplicacaoControler@apresentarPaginaInicial');
 
-// video parou no incio do 79
+// video parou no incio do 83 tempo 17:40
