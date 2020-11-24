@@ -38,27 +38,8 @@ class usuariosController extends Controller
           'text_usuario'=> 'required',
           'text_senha' => 'required'
         ]);
-
-        // verificar se existe o usuario 
-
-         $dados= usuarios::where('usuario',$request->text_usuario)->first();
-        // $dados= usuarios::where('usuario',$request->text_usuario)->count();
-         var_dump($dados);
-       //verificar se existe o usuario 
-       if (isset($this->$dados) &&  count($this->$dados) == 0) {
-             $erros_bd = ['essa conta de usuario nao existe'];
-            return view('usuario_frm_login', compact('erros_db'));
-        }else{
             return 'ok';
         }
-         
-
-        // verificacao da senha
-      //  var_dump($usuario);
-     //   return 'ok';
-    }
-
-
     //--------------------------Recuperar senha --------------------
 
     public function frmRecupararSenha(){
@@ -94,21 +75,22 @@ class usuariosController extends Controller
             ]);
             // ---------------------------------------
             // verifica se ja existe o mesmo nome e o mesmo email
-            $dados = usuarios::where('usuario', "=", $request->text_usuario)
+            $dados = usuarios::where('usuario', "=" ,$request->text_usuario)
                               ->orwhere('email', "=" ,$request->text_email)
                               ->get();
-                              if($dados->count()!=0){
-                                  $erros_bd = ['ja existe um usuario com o mesmo nome ou com o mesmo email'];
-                                  return view('usuario_frm_criar_conta', compact('erros_bd'));
-                              }
-                          //-------------inseirir usuario na bd ------------
-                          $novo = new usuarios;
-                          $novo->usuario = $request->text_usuario;
-                          $novo->senha = Hash::make($request->text_senha);
-                          $novo->email = $request->text_email;
-                          $novo->save();   
+                              
+                if($dados->count()!=0){
+                    $erros_bd = ['ja existe um usuario com o mesmo nome ou com o mesmo email'];
+                    return view('usuario_frm_criar_conta', compact('erros_bd'));
+                }
+                //-------------inseirir usuario na bd ------------
+                   $novo = new usuarios;
+                   $novo->usuario = $request->text_usuario;
+                   $novo->senha = Hash::make($request->text_senha);
+                   $novo->email = $request->text_email;
+                   $novo->save();   
                           
-                          return redirect('/');
+                   return redirect('/');
      }
 
 }
