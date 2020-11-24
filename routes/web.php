@@ -20,6 +20,11 @@ Route::get('/','usuariosController@index');
 Route::get('usuario_frm_login','usariosController@frmLogin');
 Route::post('usuario_executar_login','usuariosController@execurtarLogin');
 
+
+//----------------logout---------------------------------------------------
+//ususario logut
+Route::get('usuario_logout', 'usuariosController@logout');
+
 //-------------------recuperar senha -------------------------------------------
 
 Route::get('/usuario_frm_recuperar_senha','usuariosController@frmRecupararSenha');
@@ -30,4 +35,7 @@ Route::post('/usuario_executar_recuperar_senha','usuariosController@executarRecu
 Route::get('/usuario_frm_criar_nova_conta','usuariosController@frmCriarNovaConta');
 Route::post('/usuario_executar_criar_conta','usuariosController@executarCriarNovaConta');
 
-// video parou no incio do 75
+// routes interior do sistema
+Route::get('aplicacao_index','aplicacaoControler@apresentarPaginaInicial');
+
+// video parou no incio do 79

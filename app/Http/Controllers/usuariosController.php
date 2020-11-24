@@ -5,17 +5,20 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\usuarios;
 use Illuminate\Support\Facades\Hash;
+use Session;
 
 class usuariosController extends Controller
 {
     //--------------------------------------------
     public function index(){
-
-
-
-
-
+      // verificar se existe sessao
+      if(!Session::has('login')){
+        // senao existe apresenta frm login
         return $this->frmLogin();
+      }else{
+        return view('aplicacao');
+      }
+
     }
     //---------------------------------------
 
@@ -45,20 +48,33 @@ class usuariosController extends Controller
              if($usuario->count()==0){
                 $erros_bd = ['essa conta de usuario nao existe'];
                 return view('usuario_frm_login', compact('erros_bd'));
-          }
+             }
           $usuario = usuarios::where('usuario',$request->text_usuario)->first();
           //  verificar a senha
-          if(!Hash::check($request->text_senha, $usuario->senha)){
-            $erros_bd = ['essa senha de usuario nao existe'];
-            return view('usuario_frm_login', compact('erros_bd'));
+            if(!Hash::check($request->text_senha, $usuario->senha)){
+              $erros_bd = ['essa senha de usuario nao existe'];
+              return view('usuario_frm_login', compact('erros_bd'));
 
-          }
+            }
+            Session::put('login','sim');
+            Session::put('usuario', $usuario->usuario);
 
 
-
-
-            return 'ok';
+            return redirect('/');
+            
         }
+
+    //--------------------------logout -----------------------------
+      public function logout(){
+       // destruir a sessao e redirecionar para login
+
+       //destruir sessao
+       Session::flush();
+       return redirect('/');
+
+      }
+    
+
     //--------------------------Recuperar senha --------------------
 
     public function frmRecupararSenha(){
