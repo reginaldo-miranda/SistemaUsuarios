@@ -108,7 +108,14 @@ class usuariosController extends Controller
 
           Mail::to($usuario->email)->send(new emailRecuperarSenha($nova_senha));
 
-          return 'ok';
+          // apresentar uma view q foi enviado o email com sucesso
+
+          return redirect('/usuario_email_enviado');
+     }
+     // -------------------------email enviado ----------------------------
+     public function emailenviado(){
+
+       return view('usuario_email_enviado');
      }
 
      //--------------------------criar conta -------------------------------
