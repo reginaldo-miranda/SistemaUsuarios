@@ -106,22 +106,9 @@ class usuariosController extends Controller
           $usuario->senha = Hash::make($nova_senha);
           $usuario->save();
 
-          Mail::to($ususrios->email)->send(new emailRecuperarSenha($nova_senha));
+          Mail::to($usuario->email)->send(new emailRecuperarSenha($nova_senha));
 
-         /*
-         1 ter um susuario com email valido
-         2 verificar se o email inserido corresponde a do usuario
-         3 criar senha aleatoria
-         3a registrar alterar a senha na bd
-         4 envia email com a nova senha para o email do usuario
-         5 informar em uma viw o usuario q foi enviado a senha
-
-         //$2y$10$Lr2gA9enmqjJJd6XN0799.EhCZmJRh.ptqsredXqyb3Rl1d3VmJ8m
-         //$2y$10$ZTgR9k/Cfj51vBUQWFmxFOYsvotHcPLGu0iqvfJFpOUKU6RNSNPRe
-         // HyYjgGqYZ6
-
-         */ $nova_senha = minhaClasse::criarCodigo();
-            return $nova_senha;
+          return 'ok';
      }
 
      //--------------------------criar conta -------------------------------

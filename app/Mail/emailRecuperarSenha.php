@@ -10,24 +10,21 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 class emailRecuperarSenha extends Mailable
 {
     use Queueable, SerializesModels;
+    protected $nova_senha;
 
-    /**
-     * Create a new message instance.
-     *
-     * @return void
-     */
-    public function __construct()
+   //----------------------------------------------------
+
+    public function __construct($nova_senha)
     {
-        //
+        $this->nova_senha = $nova_senha;
     }
 
-    /**
-     * Build the message.
-     *
-     * @return $this
-     */
+    //----------------------------------------------------
+
     public function build()
     {
-        return $this->view('view.emailRecuperarSenha');
+        $senha_nova = ['senha_nova', $this->nova_senha];
+       // return $this->view('emails.emailRecuperarSenha', compact('senha_nova'));
+       return $this->view('emails.emailRecuperarSenha')->with(['nova_senha' =>$this->nova_senha]);
     }
 }
