@@ -115,7 +115,7 @@ class usuariosController extends Controller
      // -------------------------email enviado ----------------------------
      public function emailenviado(){
 
-       return view('usuario_email_enviado');
+       return view('/usuario_email_enviado');
      }
 
      //--------------------------criar conta -------------------------------

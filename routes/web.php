@@ -30,7 +30,8 @@ Route::get('usuario_logout', 'usuariosController@logout');
 Route::get('/usuario_frm_recuperar_senha','usuariosController@frmRecupararSenha');
 Route::post('/usuario_executar_recuperar_senha','usuariosController@executarRecuperarSenha');
 
-Route::get('/usuario_email_enviado','usuariosController@emeailenviado');
+Route::get('/usuario_email_enviado','usuariosController@emailenviado');
+                                                            
 
 //--------------------criar conta -------------------------------------------------------
 
@@ -41,3 +42,13 @@ Route::post('/usuario_executar_criar_conta','usuariosController@executarCriarNov
 Route::get('aplicacao_index','aplicacaoControler@apresentarPaginaInicial');
 
 // video parou no incio do 83 tempo 17:40
+/*
+corrigir erro ao enviar o email
+Vá para location \ vendor \ swiftmailer \ lib \ classes \ Swift \ Transport \ StreamBuffer.php na linha 259 e comente o seguinte:
+
+    //$options = array();
+    
+    e adicione.
+    
+    $options['ssl'] = array('verify_peer' => false, 'verify_peer_name' => false, 'allow_self_signed' => true);
+ */   
